@@ -1,0 +1,105 @@
+body {
+    --background: rgba(186, 186, 116, 1); 
+    --aside-background: rgba(211, 211, 211, 1);
+    --font-color: rgba(186, 186, 116, 1);
+    --white: rgba(255, 255, 255, 1);
+
+    background-color: var(--background);
+    display: grid;
+    grid-template-areas: "header" "main";
+}
+
+nav {
+    display: grid;
+    grid-template-areas: 
+    "welcome welcome welcome welcome" 
+    "contact hamburger your-store facebook"
+    "contact hamburger phone instagram"; 
+    width: fit-content;
+    justify-self: center;
+    justify-items: center;
+}
+
+.main-nav-title {
+    font: normal normal bold 16pt 'Arial';
+}
+
+.sub-nav-title {
+    font: normal normal 12pt 'Arial';
+}
+
+.nav-plaintext {
+    font: normal normal 9pt 'Arial';
+}
+
+.nav-text {
+    color: var(--font-color);
+    background-color: var(--white);
+    width: fit-content; 
+    margin: 5px;
+}
+
+.icon {
+    color: var(--white);
+    width: fit-content; 
+}
+
+a {
+    text-decoration: none;
+}
+
+a, #mobile-hamburger {
+    height: fit-content;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#welcome {
+    grid-area: welcome; 
+}
+
+#mobile-hamburger {
+    grid-area: hamburger;
+    padding-bottom: 0;
+}
+
+#your-store {
+    grid-area: your-store;
+}
+
+#phone {
+    grid-area: phone;
+}
+
+#contact  {
+    grid-area: contact;
+}
+
+#facebook {
+    grid-area: facebook;
+}
+
+#instagram {
+    grid-area: instagram;
+}
+
+aside {
+    background-color: var(--aside-background);
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    text-align: center;
+}
+
+aside a {
+    color: white;
+    font: normal 9pt Tahoma;
+}
+
+#close-aside {
+    color: white;
+    text-align: right;
+}
