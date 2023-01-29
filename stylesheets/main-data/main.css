@@ -1,21 +1,21 @@
 @import "variables.css";
 
-@keyframes bgTransOpenAside {
+@keyframes bgTransOpenNav {
     from {background-color: var(--background);}
     to {background-color: var(--background-darker);}
   }
 
-@keyframes bgTransCloseAside {
+@keyframes bgTransCloseNav {
     from {background-color: var(--background-darker); }
     to {background-color: var(--background); }
 }
 
-@keyframes brightnessTransOpenAside {
+@keyframes brightnessTransOpenNav {
     from {filter: brightness(1); }
     to {filter: brightness(0.6); }
   }
 
-@keyframes brightnessTransCloseAside {
+@keyframes brightnessTransCloseNav {
     from {filter: brightness(0.6);  }
     to { filter: brightness(1); }
 }
@@ -30,7 +30,7 @@ main {
     justify-self: center;
 }
 
-nav {
+header {
     display: grid;
     grid-template-areas: 
     "welcome welcome welcome welcome" 
@@ -40,19 +40,19 @@ nav {
     justify-items: center;
 }
 
-.main-nav-title {
+.main-header-title {
     font: normal normal bold 16pt 'Arial';
 }
 
-.sub-nav-title {
+.sub-header-title {
     font: normal normal 12pt 'Arial';
 }
 
-.nav-plaintext {
+.header-plaintext {
     font: normal normal 9pt 'Arial';
 }
 
-.nav-text {
+.header-text {
     color: var(--font-color);
     background-color: var(--white);
     width: fit-content; 
@@ -103,8 +103,8 @@ a, #mobile-hamburger {
     grid-area: instagram;
 }
 
-aside {
-    background-color: var(--aside-background);
+nav {
+    background-color: var(--nav-background);
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -114,16 +114,16 @@ aside {
     text-align: center;
 }
 
-aside:not([open]) {
+nav:not([open]) {
     transform: translate3d(-150px, 0, 0);
 }
 
-aside a {
+nav a {
     color: white;
     font: normal 9pt Tahoma;
 }
 
-#close-aside {
+#close-nav {
     color: white;
     text-align: right;
 }

@@ -1,35 +1,45 @@
-function initEventListeners() {
-    document.addEventListener('click', function() {
-        if(document.querySelector("aside").getAttribute("open")) {
-            asideSlideAnimation();
-        }
-    }); 
-    document.getElementById("mobile-hamburger").addEventListener('click', (event) => asideSlideAnimation(event));
+function loadMainHTML() {
+   fetch("main-data/main.html")
+    .then((result) => result.text())
+    .then(function(htmlCode) {
+        document.querySelector("body").innerHTML = htmlCode;
+        initEventListeners();
+    }).catch((error) => console.log(error)); 
 }
 
-function asideSlideAnimation(e) {
-    let aside = document.querySelector("aside");
+function initEventListeners() {
+    document.addEventListener('click', function() {
+        if(document.querySelector("nav").getAttribute("open")) {
+            navSlideAnimation();
+        }
+    }); 
+    document.getElementById("mobile-hamburger").addEventListener('click', (event) => navSlideAnimation(event)); 
+}
+
+
+function navSlideAnimation(e) {
+    let nav = document.querySelector("nav");
     let hamburger = document.getElementById("mobile-hamburger");
     let body = document.querySelector("body");
     let pageContent = document.getElementById("page-content");
 
-    aside.style.transition = "transform 1000ms";
+    nav.style.transition = "transform 1000ms";
 
-    if(aside.getAttribute("open")) {
-    body.style.animation = "1000ms bgTransCloseAside";
-    pageContent.style.animation = "1000ms brightnessTransCloseAside";
+    if(nav.getAttribute("open")) {
+    body.style.animation = "1000ms bgTransCloseNav";
+    pageContent.style.animation = "1000ms brightnessTransCloseNav";
 
-    aside.style.transform = "translate3d(-150px, 0, 0)";
-    aside.removeAttribute("open");
+    nav.style.transform = "translate3d(-150px, 0, 0)";
+    nav.removeAttribute("open");
     hamburger.style.opacity = 1;
     } else {
-    body.style.animation = "1000ms bgTransOpenAside";
+    body.style.animation = "1000ms bgTransOpenNav";
     body.style.animationFillMode = "forwards";
-    pageContent.style.animation = "1000ms brightnessTransOpenAside";
+    pageContent.style.animation = "1000ms brightnessTransOpenNav";
     pageContent.style.animationFillMode = "forwards";
 
-    aside.style.transform = "translate3d(0, 0, 0)";
-    aside.setAttribute("open", "true");
+    nav.style.transform = "translate3d(0, 0, 0)";
+    nav.setAttribute("open", "true");
     hamburger.style.opacity = 0;
     }
     e.stopPropagation();
