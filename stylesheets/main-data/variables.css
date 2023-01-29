@@ -1,0 +1,7 @@
+:root {
+    --background: rgba(186, 186, 116, 1); 
+    --background-darker: rgba(93,93,58,255); 
+    --aside-background: rgba(211, 211, 211, 1);
+    --font-color: rgba(186, 186, 116, 1);
+    --white: rgba(255, 255, 255, 1);
+}

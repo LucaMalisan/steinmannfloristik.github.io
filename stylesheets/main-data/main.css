@@ -1,12 +1,33 @@
-body {
-    --background: rgba(186, 186, 116, 1); 
-    --aside-background: rgba(211, 211, 211, 1);
-    --font-color: rgba(186, 186, 116, 1);
-    --white: rgba(255, 255, 255, 1);
+@import "variables.css";
 
+@keyframes bgTransOpenAside {
+    from {background-color: var(--background);}
+    to {background-color: var(--background-darker);}
+  }
+
+@keyframes bgTransCloseAside {
+    from {background-color: var(--background-darker); }
+    to {background-color: var(--background); }
+}
+
+@keyframes brightnessTransOpenAside {
+    from {filter: brightness(1); }
+    to {filter: brightness(0.6); }
+  }
+
+@keyframes brightnessTransCloseAside {
+    from {filter: brightness(0.6);  }
+    to { filter: brightness(1); }
+}
+
+body {
     background-color: var(--background);
     display: grid;
     grid-template-areas: "header" "main";
+}
+
+main {
+    justify-self: center;
 }
 
 nav {
@@ -16,7 +37,6 @@ nav {
     "contact hamburger your-store facebook"
     "contact hamburger phone instagram"; 
     width: fit-content;
-    justify-self: center;
     justify-items: center;
 }
 
@@ -92,6 +112,10 @@ aside {
     top: 0;
     height: 100%;
     text-align: center;
+}
+
+aside:not([open]) {
+    transform: translate3d(-150px, 0, 0);
 }
 
 aside a {
