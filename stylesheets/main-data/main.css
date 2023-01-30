@@ -26,7 +26,7 @@ body {
     grid-template-areas: "header" "main";
 }
 
-main {
+#inserted-by-fetch {
     justify-self: center;
 }
 
@@ -71,6 +71,9 @@ a {
 a, #mobile-hamburger {
     height: fit-content;
     padding: 5px;
+}
+
+a, #mobile-hamburger, #close-nav{
     cursor: pointer;
 }
 
@@ -126,4 +129,12 @@ nav a {
 #close-nav {
     color: white;
     text-align: right;
+}
+
+article {
+    font: normal normal normal 11pt 'Tahoma';
+    text-align: center;
+    justify-self: center;
+    margin-top: 8vw;
+    line-height: 1.5;
 }

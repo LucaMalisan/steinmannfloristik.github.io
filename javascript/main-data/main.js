@@ -2,7 +2,7 @@ function loadMainHTML() {
    fetch("main-data/main.html")
     .then((result) => result.text())
     .then(function(htmlCode) {
-        document.querySelector("body").innerHTML = htmlCode;
+        document.querySelector("#inserted-by-fetch").innerHTML = htmlCode;
         initEventListeners();
     }).catch((error) => console.log(error)); 
 }
