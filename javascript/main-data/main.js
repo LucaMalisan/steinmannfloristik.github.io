@@ -22,25 +22,27 @@ function navSlideAnimation(e) {
     let hamburger = document.getElementById("mobile-hamburger");
     let body = document.querySelector("body");
     let pageContent = document.getElementById("page-content");
+    let applyTransitionElementsArray = Array.from(document.querySelectorAll(".apply-nav-transition"));
 
     nav.style.transition = "transform 1000ms";
 
     if(nav.getAttribute("open")) {
-    body.style.animation = "1000ms bgTransCloseNav";
-    pageContent.style.animation = "1000ms brightnessTransCloseNav";
-
-    nav.style.transform = "translate3d(-150px, 0, 0)";
-    nav.removeAttribute("open");
-    hamburger.style.opacity = 1;
+        body.style.animation = "1000ms bgTransCloseNav";
+        pageContent.style.animation = "1000ms brightnessTransCloseNav";
+        applyTransitionElementsArray.forEach(img => img.style.animation = "1000ms brightnessTransCloseNav");
+        nav.style.transform = "translate3d(-150px, 0, 0)";
+        nav.removeAttribute("open");
+        hamburger.style.opacity = 1;
     } else {
-    body.style.animation = "1000ms bgTransOpenNav";
-    body.style.animationFillMode = "forwards";
-    pageContent.style.animation = "1000ms brightnessTransOpenNav";
-    pageContent.style.animationFillMode = "forwards";
-
-    nav.style.transform = "translate3d(0, 0, 0)";
-    nav.setAttribute("open", "true");
-    hamburger.style.opacity = 0;
+        body.style.animation = "1000ms bgTransOpenNav";
+        body.style.animationFillMode = "forwards";
+        pageContent.style.animation = "1000ms brightnessTransOpenNav";
+        pageContent.style.animationFillMode = "forwards";
+        applyTransitionElementsArray.forEach(img => img.style.animation = "1000ms brightnessTransOpenNav");
+        applyTransitionElementsArray.forEach(img => img.style.animationFillMode = "forwards");
+        nav.style.transform = "translate3d(0, 0, 0)";
+        nav.setAttribute("open", "true");
+        hamburger.style.opacity = 0;
     }
     e.stopPropagation();
 }

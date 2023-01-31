@@ -15,7 +15,7 @@
     to {filter: brightness(0.6); }
   }
 
-@keyframes brightnessTransCloseNav {
+@keyframes brightnessTransClonavseNav {
     from {filter: brightness(0.6);  }
     to { filter: brightness(1); }
 }
@@ -92,6 +92,7 @@ a, #mobile-hamburger, #close-nav{
 
 #phone {
     grid-area: phone;
+    white-space: nowrap;
 }
 
 #contact  {
@@ -115,6 +116,7 @@ nav {
     top: 0;
     height: 100%;
     text-align: center;
+    z-index: 2;
 }
 
 nav:not([open]) {
@@ -137,4 +139,8 @@ article {
     justify-self: center;
     margin-top: 8vw;
     line-height: 1.5;
+}
+td {
+    padding: 0 10px;
+    text-align: left;
 }
