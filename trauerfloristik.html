@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <script src="javascript/main-data/main.js" defer onload="loadMainHTML()"> </script> 
+    <link rel="stylesheet" href="blueimp-gallery/css/blueimp-gallery.min.css" />
     <link rel="stylesheet" href="stylesheets/trauerfloristik.css"/> 
+    <script src="javascript/main-data/main.js" defer onload="loadMainHTML()"> </script> 
     <title>www.steimannfloristik.ch</title>
 </head>
 <body>
@@ -17,6 +18,68 @@
         Mit Blumenschmuck, Kränzen und Gestecken gedenken wir den Verstorbenen, <br>
         drücken unsere Trauer aus, suchen und spenden Trost. <br>
         Gerne nehme ich mir Zeit, mit Ihnen passende Blumen für den Abschied zu finden.
-        <!-- TODO image slider -->
     </article>
+    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls blueimp-gallery-contain" aria-label="image gallery" aria-modal="true" role="dialog">
+      <div class="slides" aria-live="polite"></div>
+      <h3 class="title"></h3>
+      <a class="prev" aria-controls="blueimp-gallery" aria-label="previous slide" aria-keyshortcuts="ArrowLeft"></a>
+      <a class="next" aria-controls="blueimp-gallery" aria-label="next slide" aria-keyshortcuts="ArrowRight"></a>
+      <a class="close" aria-controls="blueimp-gallery" aria-label="close" aria-keyshortcuts="Escape"></a>
+<a class="play-pause" aria-controls="blueimp-gallery" aria-label="play slideshow" aria-keyshortcuts="Space" aria-pressed="false" role="button"></a>
+<ol class="indicator"></ol>
+</div>
+  <div id="image-list-container"> 
+    <span class="material-symbols-outlined" id="shift-to-left" onclick="shiftToLeft()">
+      arrow_circle_left
+    </span>
+    <div id="links">
+      <a href="resources/trauerfloristik/trauerfloristik1.jpg" title="Flower1">
+        <img src="resources/trauerfloristik/trauerfloristik1.jpg" alt="Flower1" />
+      </a>
+      <a href="resources/trauerfloristik/trauerfloristik2.jpg" title="Flower2">
+        <img src="resources/trauerfloristik/trauerfloristik2.jpg" alt="Flower2" />
+      </a>
+      <a href="resources/trauerfloristik/trauerfloristik1.jpg" title="Flower1">
+        <img src="resources/trauerfloristik/trauerfloristik1.jpg" alt="Flower1" />
+      </a>
+      <a href="resources/trauerfloristik/trauerfloristik2.jpg" title="Flower2">
+        <img src="resources/trauerfloristik/trauerfloristik2.jpg" alt="Flower2" />
+      </a>
+      <a href="resources/trauerfloristik/trauerfloristik1.jpg" title="Flower1">
+        <img src="resources/trauerfloristik/trauerfloristik1.jpg" alt="Flower1" />
+      </a>
+      <a href="resources/trauerfloristik/trauerfloristik2.jpg" title="Flower2">
+        <img src="resources/trauerfloristik/trauerfloristik2.jpg" alt="Flower2" />
+      </a>
+      <a href="resources/trauerfloristik/trauerfloristik1.jpg" title="Flower1">
+        <img src="resources/trauerfloristik/trauerfloristik1.jpg" alt="Flower1" />
+      </a>
+      <a href="resources/trauerfloristik/trauerfloristik2.jpg" title="Flower2">
+        <img src="resources/trauerfloristik/trauerfloristik2.jpg" alt="Flower2" />
+      </a>
+      <a href="resources/trauerfloristik/trauerfloristik1.jpg" title="Flower1">
+        <img src="resources/trauerfloristik/trauerfloristik1.jpg" alt="Flower1" />
+      </a>
+      <a href="resources/trauerfloristik/trauerfloristik2.jpg" title="Flower2">
+        <img src="resources/trauerfloristik/trauerfloristik2.jpg" alt="Flower2" />
+      </a>
+      <a href="resources/trauerfloristik/trauerfloristik1.jpg" title="Flower1">
+        <img src="resources/trauerfloristik/trauerfloristik1.jpg" alt="Flower1" />
+      </a>
+      <a href="resources/trauerfloristik/trauerfloristik2.jpg" title="Flower2">
+       <img src="resources/trauerfloristik/trauerfloristik2.jpg" alt="Flower2" />
+      </a>
+      <a href="resources/trauerfloristik/trauerfloristik1.jpg" title="Flower1">
+        <img src="resources/trauerfloristik/trauerfloristik1.jpg" alt="Flower1" />
+      </a>
+      <a href="resources/trauerfloristik/trauerfloristik2.jpg" title="Flower2">
+        <img src="resources/trauerfloristik/trauerfloristik2.jpg" alt="Flower2" />
+      </a>
+    </div>
+    <span class="material-symbols-outlined" id="shift-to-right">
+      arrow_circle_right
+    </span>
+  </div>
+ <script src="blueimp-gallery/js/blueimp-gallery.min.js"></script>
+ <script src="javascript/trauerfloristik.js" defer onload="initTrauerfloristikEventListeners()"> </script>
 </body>

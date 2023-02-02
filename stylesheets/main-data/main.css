@@ -140,6 +140,11 @@ article {
     margin-top: 8vw;
     line-height: 1.5;
 }
+
+table{
+    width: 100%;;
+}
+
 td {
     padding: 0 10px;
     text-align: left;
