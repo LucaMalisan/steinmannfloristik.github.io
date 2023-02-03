@@ -26,10 +26,6 @@ img {
     transition: transform 1000ms ease 0s;
 }
 
-#links img {
-    cursor: pointer;
-}
-
 span {
     cursor: pointer;
 }
