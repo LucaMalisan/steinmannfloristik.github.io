@@ -1,6 +1,6 @@
 @import "variables.css";
 
-@keyframes bgTransOpenNav {
+ @keyframes bgTransOpenNav {
     from {background-color: var(--background);}
     to {background-color: var(--background-darker);}
   }
@@ -105,9 +105,9 @@ a, #mobile-hamburger, #close-nav{
 
 #instagram {
     grid-area: instagram;
-}
+} 
 
-nav {
+nav:not([class="gamma-nav"]) {
     background-color: var(--nav-background);
     display: flex;
     flex-direction: column;
@@ -117,16 +117,16 @@ nav {
     height: 100%;
     text-align: center;
     z-index: 2;
-}
+} 
 
-nav:not([open]) {
+nav:not([open]):not([class="gamma-nav"]) {
     transform: translate3d(-150px, 0, 0);
 }
 
 nav a {
     color: white;
     font: normal 9pt Tahoma;
-}
+} 
 
 #close-nav {
     color: white;
@@ -139,7 +139,7 @@ article {
     justify-self: center;
     margin-top: 8vw;
     line-height: 1.5;
-}
+} 
 
 table{
     width: 100%;;
@@ -148,4 +148,4 @@ table{
 td {
     padding: 0 10px;
     text-align: left;
-}
+} 
