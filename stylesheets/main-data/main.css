@@ -1,89 +1,68 @@
 @import "variables.css";
 
- @keyframes bgTransOpenNav {
-    from {background-color: var(--background);}
-    to {background-color: var(--background-darker);}
-  }
-
-@keyframes bgTransCloseNav {
-    from {background-color: var(--background-darker); }
-    to {background-color: var(--background); }
-}
-
-@keyframes brightnessTransOpenNav {
-    from {filter: brightness(1); }
-    to {filter: brightness(0.6); }
-  }
-
-@keyframes brightnessTransClonavseNav {
-    from {filter: brightness(0.6);  }
-    to { filter: brightness(1); }
-}
-
 body {
     background-color: var(--background);
     display: grid;
-    grid-template-areas: "header" "main";
-}
-
-#inserted-by-fetch {
-    justify-self: center;
+    grid-template-areas: "header" "gallery" "main";
 }
 
 header {
     display: grid;
     grid-template-areas: 
-    "welcome welcome welcome welcome" 
-    "contact hamburger your-store facebook"
-    "contact hamburger phone instagram"; 
-    width: fit-content;
-    justify-items: center;
+    "logo"
+    "navigation";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    z-index: 1;
 }
 
-.main-header-title {
-    font: normal normal bold 16pt 'Arial';
+#header-contact {
+    display: grid;
+    grid-template-areas: 
+    "your-store facebook"
+    "phone instagram";
+    justify-self: right;
+    width: fit-content;
+    padding: 20px;
+}
+
+#logo-and-contact {
+    background-color: black;
+    grid-area: logo;
+    display: grid;
+}
+
+#logo-and-contact img {
+    padding: 20px;
+    justify-self: center;
 }
 
 .sub-header-title {
-    font: normal normal 12pt 'Arial';
+    font: white normal normal 12pt 'Arial';
 }
 
 .header-plaintext {
-    font: normal normal 9pt 'Arial';
+    font: white normal normal 9pt 'Arial';
 }
 
 .header-text {
-    color: var(--font-color);
-    background-color: var(--white);
+    color: white;
     width: fit-content; 
     margin: 5px;
 }
 
 .icon {
-    color: var(--white);
+    color: white;
     width: fit-content; 
 }
 
 a {
     text-decoration: none;
-}
-
-a, #mobile-hamburger {
     height: fit-content;
     padding: 5px;
-}
-
-a, #mobile-hamburger, #close-nav{
-    cursor: pointer;
-}
-
-#welcome {
-    grid-area: welcome; 
-}
-
-#mobile-hamburger {
-    grid-area: hamburger;
-    padding-bottom: 0;
 }
 
 #your-store {
@@ -107,30 +86,25 @@ a, #mobile-hamburger, #close-nav{
     grid-area: instagram;
 } 
 
-nav:not([class="gamma-nav"]) {
+nav {
     background-color: var(--nav-background);
     display: flex;
-    flex-direction: column;
-    position: absolute;
-    left: 0;
+    padding: 20px;
+    justify-content: center;
+    gap: 20px;
+    grid-area: navigation;
+    align-self: start;
     top: 0;
-    height: 100%;
-    text-align: center;
-    z-index: 2;
 } 
-
-nav:not([open]):not([class="gamma-nav"]) {
-    transform: translate3d(-150px, 0, 0);
-}
 
 nav a {
-    color: white;
-    font: normal 9pt Tahoma;
-} 
+    text-transform: uppercase;
+    color: var(--font-color);
+    font-family: sans-serif;
+}
 
-#close-nav {
-    color: white;
-    text-align: right;
+#logo-and-contact p {
+    font-family: sans-serif;
 }
 
 article {
@@ -149,3 +123,14 @@ td {
     padding: 0 10px;
     text-align: left;
 } 
+
+#blueimp-gallery {
+    width: var(--gallery-width);
+    height: var(--gallery-height);
+    left: var(--gallery-position-left);
+    z-index: 0;
+}
+
+.slide {
+    width: var(--gallery-width);
+}

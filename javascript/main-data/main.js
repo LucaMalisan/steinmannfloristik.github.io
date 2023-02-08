@@ -1,48 +1,51 @@
 function loadMainHTML() {
-   fetch("main-data/main.html")
+   fetch("main.html")
     .then((result) => result.text())
     .then(function(htmlCode) {
         document.querySelector("#inserted-by-fetch").innerHTML = htmlCode;
         initEventListeners();
-    }).catch((error) => console.log(error)); 
+    })
+   .catch((error) => console.log(error)); 
 }
 
-function initEventListeners() {
-    document.addEventListener('click', function() {
-        if(document.querySelector("nav").getAttribute("open")) {
-            navSlideAnimation();
-        }
-    }); 
-    document.getElementById("mobile-hamburger").addEventListener('click', (event) => navSlideAnimation(event)); 
+function initEventListeners() {    
+       window.onscroll = function(e){
+            if(document.querySelector("nav") !== null) {
+                let pos = document.querySelector("header").getBoundingClientRect().bottom;
+                document.getElementById("blueimp-gallery").style.top = (pos + 150) + "px";
+            }
+           if (document.querySelector("#logo-and-contact").getBoundingClientRect().bottom <= 0) {
+               document.querySelector("nav").style.position = "fixed";
+               document.querySelector("nav").style.width = "100%";
+           } else {
+               document.querySelector("nav").style.position = "unset";
+               document.querySelector("nav").style.width = "unset";
+           }
+           e.stopPropagation();
+        }   
+
+        document.addEventListener('keydown', (e) => {
+            console.log(e.key);
+           /* if(e.key === 'ESC') {
+                e.stopPropagation();
+            }
+            if(e.key === 'F12') {
+                e.preventDefault();
+            } */
+        });
+
+        document.addEventListener('mousedown', (e) => {
+            /* if(e.button == '2') {
+                e.preventDefault
+            } */
+        })
+
+        setGalleryPosition();
 }
 
-
-function navSlideAnimation(e) {
-    let nav = document.querySelector("nav");
-    let hamburger = document.getElementById("mobile-hamburger");
-    let body = document.querySelector("body");
-    let pageContent = document.getElementById("page-content");
-    let applyTransitionElementsArray = Array.from(document.querySelectorAll(".apply-nav-transition"));
-
-    nav.style.transition = "transform 1000ms";
-
-    if(nav.getAttribute("open")) {
-        body.style.animation = "1000ms bgTransCloseNav";
-        pageContent.style.animation = "1000ms brightnessTransCloseNav";
-        applyTransitionElementsArray.forEach(img => img.style.animation = "1000ms brightnessTransCloseNav");
-        nav.style.transform = "translate3d(-150px, 0, 0)";
-        nav.removeAttribute("open");
-        hamburger.style.opacity = 1;
-    } else {
-        body.style.animation = "1000ms bgTransOpenNav";
-        body.style.animationFillMode = "forwards";
-        pageContent.style.animation = "1000ms brightnessTransOpenNav";
-        pageContent.style.animationFillMode = "forwards";
-        applyTransitionElementsArray.forEach(img => img.style.animation = "1000ms brightnessTransOpenNav");
-        applyTransitionElementsArray.forEach(img => img.style.animationFillMode = "forwards");
-        nav.style.transform = "translate3d(0, 0, 0)";
-        nav.setAttribute("open", "true");
-        hamburger.style.opacity = 0;
-    }
-    e.stopPropagation();
+function setGalleryPosition() {
+    let pos = document.querySelector("header").getBoundingClientRect().bottom;
+    document.getElementById("blueimp-gallery").style.top = (pos + 150) + "px";
+    document.querySelector("body").style.overflow = "unset";
+    document.getElementById("blueimp-gallery").style.position = "sticky";
 }
