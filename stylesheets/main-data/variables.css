@@ -6,4 +6,5 @@
     --gallery-width: 60vw;
     --gallery-height: calc(var(--gallery-width)/2);
     --gallery-position-left: calc(50% - (var(--gallery-width)/2));
+    --distance-headertop-gallery: 500; /* px */
 }
