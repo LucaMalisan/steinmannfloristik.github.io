@@ -11,10 +11,43 @@
 * Die Branches mit "dev" im Namen sind zum Entwickeln da
 
 ## Dateien
-### Bearbeiten des Websiteinhalts
+### Bearbeiten von Text
 * Zum Bearbeiten des Websiteinhalts (z.B. Texte) sind ausschliesslich .html Files relevant. 
-* Der Code für die seitliche Navigation und den Websitekopf liegt unter <b> <i> main-data/main.html </i> </b>
-* Der Code für den Rest findet sich in der entsprechend benannten .html-Datei
+* Fetter Text: \<b> Dieser Text wird fett dargestellt \</b>
+* Kursiver Text: \<i>  Dieser Text wird kursiv dargestellt \</i>
+* Unterstrichener Text: \<u> Dieser Text wird unterstrichen dargestellt \</u>
+
+<table>
+<tr> 
+<th> Element / Seite </td>
+<th> Datei mit dem Inhalt </td>
+</tr>
+<tr> 
+<td> Kopf und Navigation </td>
+<td> main.html </td>
+</tr>
+<tr> 
+<td> Home </td>
+<td> index.html </td>
+</tr>
+<tr>
+<td> TODO </td>
+<td> TODO </td>
+</tr>
+</table>
+
+### Austauschen / Einfügen von Bildern
+* Die Bilder liegen alle im Ordner resources im entsprechend benannten Unterordner
+* Die Bilder müssen mit dem Ordnernamen und einer fortlaufenden Nummer benannt werden, sodass
+das Programm diese automatisch erkennt
+* Beispiel:
+<ol>
+<li> Ich möchte neue Bilder für index.html einfügen </li>
+<li> Ich gehe in den Ordner resources/index </li>
+<li> Ich lösche die alten Bilder und füge die neuen ein </li>
+<li> Ich benenne sie folgendermassen:
+index1.jpg, index2.jpg, ...., index15.jpg
+
 
 ### FYI
 * Dateien auf die Endung .css sind für die Gestaltung der Website wichtig

@@ -1,8 +1,7 @@
-let disableProgrammingTools = false;
+let disableProgrammingTools = true;
 
-async function initPage(indexImageRoute) {
-    debugger;
-    const response1 = await insertImagesInGallery(indexImageRoute);
+async function initPage(imageName) {
+    const response1 = await insertImagesInGallery(imageName);
     const response2 = await loadMainHTML();
     initEventListeners();
     document.getElementById('links').click();
@@ -10,16 +9,16 @@ async function initPage(indexImageRoute) {
     document.querySelector("body").style.overflow = "unset";
 }
 
-async function insertImagesInGallery(indexImageRoute, i=1){
-    return fetch(indexImageRoute+ "\\index" + i + ".jpg")
+async function insertImagesInGallery(imageName, i=1){
+    let route = "resources\\" + imageName + "\\" + imageName + "%.jpg"
+    return fetch(route.replace('%', i))
         .then((response) => {
             if(response.status == 200){
-                document.getElementById("links").appendChild(getHtmlForGalleryImg("title", indexImageRoute+ "\\index" + i + ".jpg"));
+                document.getElementById("links").appendChild(getHtmlForGalleryImg("title", route.replace('%', i)));
                 i++;
-                if(i < 3) {
-                    insertImagesInGallery(indexImageRoute, i);
-                }}}
-            )
+                insertImagesInGallery(imageName, i);
+                }})
+        .catch(() => console.log("Images inserted"));
         }
 
 async function loadMainHTML() {
@@ -60,7 +59,7 @@ function setGalleryPosition() {
     let pos = document.querySelector("header").getBoundingClientRect().top;
     let distance = parseInt(getComputedStyle(document.documentElement)
     .getPropertyValue('--distance-headertop-gallery'));   
-    document.getElementById("blueimp-gallery").style.top = (pos + distance) + "px";
+    document.getElementById("blueimp-gallery").style.marginTop = (pos + distance) + "px";
     document.getElementById("blueimp-gallery").style.position = "sticky";
 
     for(let i = 0; i < document.querySelectorAll(".slide").length; i++) {
