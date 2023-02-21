@@ -3,8 +3,10 @@
     --background-darker: rgba(151, 132, 153, 1); 
     --nav-background: rgba(211, 211, 211, 1);
     --font-color: rgb(67 22 86);
-    --gallery-width: 60vw;
-    --gallery-height: calc(var(--gallery-width)/2);
+    --gallery-width: 100vw;
+    --gallery-height: calc(var(--gallery-width)/4);
     --gallery-position-left: calc(50% - (var(--gallery-width)/2));
-    --distance-headertop-gallery: 500; /* px */
+    --distance-headertop-gallery: 500; 
+    --distance-headertop-slider: 700px;
+    --slider-image-size: 179;
 }

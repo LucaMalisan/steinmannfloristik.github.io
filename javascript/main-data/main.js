@@ -1,12 +1,18 @@
-let disableProgrammingTools = true;
+let disableProgrammingTools = false;
 
-async function initPage(imageName) {
+async function initPage(imageName, slider=false) {
     const response1 = await insertImagesInGallery(imageName);
     const response2 = await loadMainHTML();
-    initEventListeners();
-    document.getElementById('links').click();
-    document.querySelector(".play-pause").click();
-    document.querySelector("body").style.overflow = "unset";
+    initEventListeners(slider);
+    if(!slider) {
+        document.getElementById('links').click();
+        document.querySelector(".play-pause").click();
+    }
+    document.querySelector("body").style.overflow = "overlay";
+
+    for(let el of document.querySelector(".slides").childNodes){
+        el.firstElementChild.style.objectFit = "cover";
+    }
 }
 
 async function insertImagesInGallery(imageName, i=1){
@@ -30,7 +36,7 @@ async function loadMainHTML() {
    .catch((error) => console.log(error)); 
 }
 
-function initEventListeners() {    
+function initEventListeners(slider) {    
     document.getElementById('links').onclick = function (event) {
         event = event || window.event
         var target = event.target || event.srcElement
@@ -52,13 +58,15 @@ function initEventListeners() {
     if(disableProgrammingTools) {
         disableDeveloperTools();
     }
-    setGalleryPosition();
+    setGalleryPosition(slider);
 }
 
-function setGalleryPosition() {
+function setGalleryPosition(slider) {
     let pos = document.querySelector("header").getBoundingClientRect().top;
-    let distance = parseInt(getComputedStyle(document.documentElement)
+    let distanceProp = parseInt(getComputedStyle(document.documentElement)
     .getPropertyValue('--distance-headertop-gallery'));   
+    debugger;
+    let distance = slider ? distanceProp/2 : distanceProp;
     document.getElementById("blueimp-gallery").style.marginTop = (pos + distance) + "px";
     document.getElementById("blueimp-gallery").style.position = "sticky";
 

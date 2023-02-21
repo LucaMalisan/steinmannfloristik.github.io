@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="blueimp-gallery/css/blueimp-gallery.min.css" />
+    <link rel="stylesheet" href="stylesheets/impressionen.css"/> 
+    <script src="javascript/main-data/main.js" defer onload="initPage('impressionen', true)"> </script> 
+    <title>www.steimannfloristik.ch</title>
+</head>
+<body>
+    <div id="inserted-by-fetch"></div>
+    <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls blueimp-gallery-contain" aria-label="image gallery" aria-modal="true" role="dialog">
+      <div class="slides" aria-live="polite"></div>
+      <h3 class="title"></h3>
+      <a class="prev" aria-controls="blueimp-gallery" aria-label="previous slide" aria-keyshortcuts="ArrowLeft"></a>
+      <a class="next" aria-controls="blueimp-gallery" aria-label="next slide" aria-keyshortcuts="ArrowRight"></a>
+      <a class="close" aria-controls="blueimp-gallery" aria-label="close" aria-keyshortcuts="Escape"></a>
+<a class="play-pause" aria-controls="blueimp-gallery" aria-label="play slideshow" aria-keyshortcuts="Space" aria-pressed="false" role="button"></a>
+<ol class="indicator"></ol>
+</div>
+  <div id="image-list-container"> 
+    <span class="material-symbols-outlined" id="shift-to-right" onclick="shift(false)">
+      arrow_circle_left
+    </span>
+    <div id="links">
+     <!-- <a href="resources/impressionen/impressionen1.jpg" title="Flower1">
+        <img src="resources/impressionen/impressionen1.jpg" alt="Flower1" />
+      </a>
+      <a href="resources/impressionen/impressionen2.jpg" title="Flower2">
+        <img src="resources/impressionen/impressionen2.jpg" alt="Flower2" />
+      </a>
+      
+      <a href="resources/impressionen/impressionen1.jpg" title="Flower1">
+        <img src="resources/impressionen/impressionen1.jpg" alt="Flower1" />
+      </a>
+      <a href="resources/impressionen/impressionen2.jpg" title="Flower2">
+        <img src="resources/impressionen/impressionen2.jpg" alt="Flower2" />
+      </a>
+      <a href="resources/impressionen/impressionen1.jpg" title="Flower1">
+        <img src="resources/impressionen/impressionen1.jpg" alt="Flower1" />
+      </a>
+      <a href="resources/impressionen/impressionen2.jpg" title="Flower2">
+        <img src="resources/impressionen/impressionen2.jpg" alt="Flower2" />
+      </a>
+      <a href="resources/impressionen/impressionen1.jpg" title="Flower1">
+        <img src="resources/impressionen/impressionen1.jpg" alt="Flower1" />
+      </a>
+      <a href="resources/impressionen/impressionen2.jpg" title="Flower2">
+        <img src="resources/impressionen/impressionen2.jpg" alt="Flower2" />
+      </a>
+      <a href="resources/impressionen/impressionen1.jpg" title="Flower1">
+        <img src="resources/impressionen/impressionen1.jpg" alt="Flower1" />
+      </a>
+      <a href="resources/impressionen/impressionen2.jpg" title="Flower2">
+        <img src="resources/impressionen/impressionen2.jpg" alt="Flower2" />
+      </a>
+      <a href="resources/impressionen/impressionen1.jpg" title="Flower1">
+        <img src="resources/impressionen/impressionen1.jpg" alt="Flower1" />
+      </a>
+      <a href="resources/impressionen/impressionen2.jpg" title="Flower2">
+        <img src="resources/impressionen/impressionen2.jpg" alt="Flower2" />
+      </a> -->
+    </div>
+    <span class="material-symbols-outlined" id="shift-to-left" onclick="shift(true)">
+      arrow_circle_right
+    </span>
+  </div>
+ <script src="blueimp-gallery/js/blueimp-gallery.min.js"></script>
+ <script src="javascript/impressionen.js" defer onload="initImpressionenEventListeners()"> </script>
+</body>

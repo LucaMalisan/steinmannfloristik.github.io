@@ -4,6 +4,7 @@ body {
     background-color: var(--background);
     display: grid;
     grid-template-areas: "header" "gallery" "main";
+    margin: 0;
 }
 
 header {
@@ -21,30 +22,58 @@ header {
 #header-contact {
     display: grid;
     grid-template-areas: 
-    "your-store facebook"
-    "phone instagram";
-    justify-self: right;
+    "phone facebook"
+    "nat instagram";
     width: fit-content;
+    height: fit-content;
+    align-items: center;
+    justify-items: center;
+    align-self: center;
     padding: 20px;
+    gap: 10px;
+}
+
+#header-contact-container{
+    display: flex;
+    flex-direction: row;
+}
+
+#twint {
+    width: 150px;
+    filter: contrast(2);
 }
 
 #logo-and-contact {
     background-color: black;
     grid-area: logo;
-    display: grid;
+    display: flex;
+    align-items: center; 
 }
 
 #logo-and-contact img {
     padding: 20px;
-    justify-self: center;
+}
+
+.flex-item {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+#your-store {
+    align-self: center;
+}
+
+.header-title {
+    font: normal normal 24pt 'Arial';
 }
 
 .sub-header-title {
-    font: white normal normal 12pt 'Arial';
+    font: normal normal 18pt 'Arial';
 }
 
 .header-plaintext {
-    font: white normal normal 9pt 'Arial';
+    font: normal normal 16pt 'Arial';
 }
 
 .header-text {
@@ -56,6 +85,8 @@ header {
 .icon {
     color: white;
     width: fit-content; 
+    padding: 0;
+    font-size: 16pt;
 }
 
 a {
@@ -64,13 +95,13 @@ a {
     padding: 5px;
 }
 
-#your-store {
-    grid-area: your-store;
-}
-
 #phone {
     grid-area: phone;
     white-space: nowrap;
+}
+
+#nat {
+    grid-area: nat;
 }
 
 #contact  {
@@ -84,6 +115,10 @@ a {
 #instagram {
     grid-area: instagram;
 } 
+
+.fa-instagram:before, .fa-facebook:before {
+    font-size: 16pt;
+}
 
 nav {
     background-color: var(--nav-background);
@@ -132,4 +167,8 @@ td {
 
 .slide {
     width: var(--gallery-width);
+}
+
+.blueimp-gallery-contain>.slides>.slide>.slide-content, .blueimp-gallery-contain>.slides>.slide>.slide-content>img{
+    object-fit: cover;
 }

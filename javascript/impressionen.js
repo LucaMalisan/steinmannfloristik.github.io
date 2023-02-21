@@ -1,4 +1,8 @@
-function initTrauerfloristikEventListeners() {
+let numberOfVisibleImages = 4;
+
+function initImpressionenEventListeners() {
+  let imageSize = parseInt(getComputedStyle(document.documentElement)
+  .getPropertyValue('--slider-image-size')); 
     document.getElementById('links').onclick = function (event) {
         event = event || window.event
         var target = event.target || event.srcElement
@@ -13,30 +17,29 @@ function initTrauerfloristikEventListeners() {
         carousel: true
       }); 
 
-    let imageList = document.getElementById("links").style.width = (4 * 179) + 'px';
-}
-
- // TODO make image length (179px) generic
-// TODO make number of visible images generic
+    let imageList = document.getElementById("links").style.width = (numberOfVisibleImages * imageSize) + 'px';
+  }
 
 function shift(toLeft){
+  let imageSize = parseInt(getComputedStyle(document.documentElement)
+  .getPropertyValue('--slider-image-size')); 
   let imageLinkArray = Array.from(document.querySelectorAll("#links a"));
   let numberOfImgVisibleOrPassed;
   let numberOfImgNotYetPassed;
 
   if(toLeft) {
-     numberOfImgVisibleOrPassed = Math.abs(getTranslateX(imageLinkArray[0]) / 179) + 4;
+     numberOfImgVisibleOrPassed = Math.abs(getTranslateX(imageLinkArray[0]) / imageSize) + numberOfVisibleImages;
      numberOfImgNotYetPassed = imageLinkArray.length - numberOfImgVisibleOrPassed;
   } else {
-     numberOfImgNotYetPassed = Math.abs(getTranslateX(imageLinkArray[0]) / 179);
+     numberOfImgNotYetPassed = Math.abs(getTranslateX(imageLinkArray[0]) / imageSize);
      numberOfImgVisibleOrPassed = imageLinkArray.length - numberOfImgNotYetPassed;
   }
 
-  let shiftAmount = Math.min(4, numberOfImgNotYetPassed) * 179;
+  let shiftAmount = Math.min(numberOfVisibleImages, numberOfImgNotYetPassed) * imageSize;
   shiftAmount = !toLeft ? (-1) * shiftAmount : shiftAmount;
 
   if(shiftAmount === 0) {
-    shiftAmount = (numberOfImgVisibleOrPassed-4) * 179;
+    shiftAmount = (numberOfImgVisibleOrPassed-numberOfVisibleImages) * imageSize;
     shiftAmount = toLeft ? (-1) * shiftAmount : shiftAmount;
 
   }
