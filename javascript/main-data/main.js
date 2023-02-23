@@ -31,7 +31,10 @@ async function loadMainHTML() {
     return fetch("main.html")
     .then((result) => result.text())
     .then(function(htmlCode) {
-        document.querySelector("#inserted-by-fetch").innerHTML = htmlCode;
+        let header = htmlCode.split("content")[0];
+        let footer = htmlCode.split("content")[1];
+        document.getElementById("inserted-by-fetch").innerHTML = header;
+        document.getElementById("footer-inserted-by-fetch").innerHTML = footer;
     })
    .catch((error) => console.log(error)); 
 }

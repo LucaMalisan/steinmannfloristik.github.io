@@ -172,3 +172,30 @@ td {
 .blueimp-gallery-contain>.slides>.slide>.slide-content, .blueimp-gallery-contain>.slides>.slide>.slide-content>img{
     object-fit: cover;
 }
+
+footer {
+    background-color: black;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+    margin-top: 100px;
+    width: 100%;
+}
+
+footer a {
+    text-decoration: underline;
+}
+
+#box-middle-left, #box-middle-right {
+    width: 300px;
+    height: 150px;
+}
+
+iframe {
+    border-radius: 5%;
+}
+
+#footer-inserted-by-fetch {
+    display: flex;
+}
