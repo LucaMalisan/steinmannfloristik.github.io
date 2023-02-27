@@ -189,7 +189,7 @@ footer a {
 
 #box-middle-left, #box-middle-right {
     width: 300px;
-    height: 150px;
+    height: 130px;
 }
 
 iframe {
@@ -198,4 +198,35 @@ iframe {
 
 #footer-inserted-by-fetch {
     display: flex;
+}
+
+img {
+    width: 169px;
+    height: 167px;
+    object-fit: cover;
+}
+
+#image-list-container {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-areas: "a b c";
+    justify-content: center;
+    position: relative;
+    margin-top: 30px;
+}
+
+#links{
+    position: relative;
+    display: flex;
+    overflow: hidden;
+}
+
+#links a {
+    position: relative;
+    transition: transform 1000ms ease 0s;
+}
+
+span {
+    cursor: pointer;
 }

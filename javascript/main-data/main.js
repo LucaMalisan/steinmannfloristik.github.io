@@ -1,31 +1,50 @@
 let disableProgrammingTools = false;
+let numberOfVisibleImages;
+let finishedFlag = false;
 
-async function initPage(imageName, slider=false) {
-    const response1 = await insertImagesInGallery(imageName);
-    const response2 = await loadMainHTML();
-    initEventListeners(slider);
-    if(!slider) {
-        document.getElementById('links').click();
-        document.querySelector(".play-pause").click();
+async function waitForXMs(ms){
+    return new Promise(resolve => {
+        setTimeout(() => {
+          resolve('4 seconds');
+        }, ms);
+      })}
+
+async function initPage(imageName) {
+    await insertImagesInGallery(imageName);
+
+    //TODO: Try to avoid this but the workaround works
+    while(true) {
+        if(finishedFlag) {
+            break;
+        }
+        await waitForXMs(100);
     }
+    
+    await loadMainHTML();
+    initEventListeners();
+    document.getElementById('links').click();
+    document.querySelector(".play-pause").click();
     document.querySelector("body").style.overflow = "overlay";
 
-    for(let el of document.querySelector(".slides").childNodes){
-        el.firstElementChild.style.objectFit = "cover";
-    }
+    let imageSize = parseInt(getComputedStyle(document.documentElement)
+    .getPropertyValue('--slider-image-size')); 
+    numberOfVisibleImages = Math.min(4, document.getElementById("links").childElementCount);
+    document.getElementById("links").style.width = (numberOfVisibleImages * imageSize) + 'px';
 }
 
 async function insertImagesInGallery(imageName, i=1){
-    let route = "resources\\" + imageName + "\\" + imageName + "%.jpg"
+    let route = "resources\\" + imageName + "\\" + imageName + "%.jpg";
     return fetch(route.replace('%', i))
         .then((response) => {
             if(response.status == 200){
                 document.getElementById("links").appendChild(getHtmlForGalleryImg("title", route.replace('%', i)));
                 i++;
                 insertImagesInGallery(imageName, i);
+                } else {
+                    finishedFlag = true;
                 }})
         .catch(() => console.log("Images inserted"));
-        }
+}
 
 async function loadMainHTML() {
     return fetch("main.html")
@@ -39,7 +58,7 @@ async function loadMainHTML() {
    .catch((error) => console.log(error)); 
 }
 
-function initEventListeners(slider) {    
+function initEventListeners() {    
     document.getElementById('links').onclick = function (event) {
         event = event || window.event
         var target = event.target || event.srcElement
@@ -50,6 +69,7 @@ function initEventListeners(slider) {
             closeOnEscape: false}
         var links = this.getElementsByTagName('a')
         blueimp.Gallery(links, options)
+        document.querySelector("body").style.overflow = "overlay";
     }
 
     blueimp.Gallery(document.getElementById('links').getElementsByTagName('a'), {
@@ -61,15 +81,14 @@ function initEventListeners(slider) {
     if(disableProgrammingTools) {
         disableDeveloperTools();
     }
-    setGalleryPosition(slider);
+    setGalleryPosition();
 }
 
-function setGalleryPosition(slider) {
+function setGalleryPosition() {
     let pos = document.querySelector("header").getBoundingClientRect().top;
     let distanceProp = parseInt(getComputedStyle(document.documentElement)
     .getPropertyValue('--distance-headertop-gallery'));   
-    debugger;
-    let distance = slider ? distanceProp/2 : distanceProp;
+    let distance = distanceProp;
     document.getElementById("blueimp-gallery").style.marginTop = (pos + distance) + "px";
     document.getElementById("blueimp-gallery").style.position = "sticky";
 
@@ -119,3 +138,39 @@ function getHtmlForGalleryImg(title, src){
   + "</a>";
   return div.firstElementChild;
 }
+
+function shift(toLeft){
+  let imageSize = parseInt(getComputedStyle(document.documentElement)
+  .getPropertyValue('--slider-image-size')); 
+  let imageLinkArray = Array.from(document.querySelectorAll("#links a"));
+  let numberOfImgVisibleOrPassed;
+  let numberOfImgNotYetPassed;
+
+  if(toLeft) {
+     numberOfImgVisibleOrPassed = Math.abs(getTranslateX(imageLinkArray[0]) / imageSize) + numberOfVisibleImages;
+     numberOfImgNotYetPassed = imageLinkArray.length - numberOfImgVisibleOrPassed;
+  } else {
+     numberOfImgNotYetPassed = Math.abs(getTranslateX(imageLinkArray[0]) / imageSize);
+     numberOfImgVisibleOrPassed = imageLinkArray.length - numberOfImgNotYetPassed;
+  }
+
+  let shiftAmount = Math.min(numberOfVisibleImages, numberOfImgNotYetPassed) * imageSize;
+  shiftAmount = !toLeft ? (-1) * shiftAmount : shiftAmount;
+
+  if(shiftAmount === 0) {
+    shiftAmount = (numberOfImgVisibleOrPassed-numberOfVisibleImages) * imageSize;
+    shiftAmount = toLeft ? (-1) * shiftAmount : shiftAmount;
+  }
+
+  for(let el of imageLinkArray) {
+    el.style.transform = "translate3d(" + (getTranslateX(el)-shiftAmount) + "px, 0, 0)"   
+  }
+}
+
+function getTranslateX(myElement) {
+  var style = window.getComputedStyle(myElement);
+  var matrix = new WebKitCSSMatrix(style.transform);
+  return matrix.m41;
+}
+
+
