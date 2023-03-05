@@ -10,6 +10,7 @@ async function waitForXMs(ms){
       })}
 
 async function initPage(imageName) {
+    await loadMainHTML();
     await insertImagesInGallery(imageName);
 
     //TODO: Try to avoid this but the workaround works
@@ -20,7 +21,6 @@ async function initPage(imageName) {
         await waitForXMs(100);
     }
     
-    await loadMainHTML();
     initEventListeners();
     document.getElementById('links').click();
     document.querySelector(".play-pause").click();
@@ -30,6 +30,8 @@ async function initPage(imageName) {
     .getPropertyValue('--slider-image-size')); 
     numberOfVisibleImages = Math.min(4, document.getElementById("links").childElementCount);
     document.getElementById("links").style.width = (numberOfVisibleImages * imageSize) + 'px';
+    debugger;
+    document.querySelectorAll(".slide").forEach(s => s.onclick = () => convertToWholewindowGallery());
 }
 
 async function insertImagesInGallery(imageName, i=1){
@@ -54,6 +56,19 @@ async function loadMainHTML() {
         let footer = htmlCode.split("content")[1];
         document.getElementById("inserted-by-fetch").innerHTML = header;
         document.getElementById("footer-inserted-by-fetch").innerHTML = footer;
+
+        const script = document.createElement('script');
+        script.src ='https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0';
+        script.async = true;
+        script.defer = true;
+        script.crossOrigin = "anonymous";
+        script.nonce = "tzXfLSxR";
+    
+        script.onload = () => {
+            console.log('Script loaded successfuly');
+        };
+    
+        document.body.appendChild(script);
     })
    .catch((error) => console.log(error)); 
 }
@@ -66,7 +81,8 @@ function initEventListeners() {
         var options = { 
             index: link, 
             event: event,
-            closeOnEscape: false}
+            closeOnEscape: false,
+            toggleControlsOnSlideClick: false}
         var links = this.getElementsByTagName('a')
         blueimp.Gallery(links, options)
         document.querySelector("body").style.overflow = "overlay";
@@ -173,4 +189,29 @@ function getTranslateX(myElement) {
   return matrix.m41;
 }
 
+function convertToWholewindowGallery() { 
+    document.querySelector(".play-pause").click();
+    document.querySelector(".play-pause").click();
+    document.getElementById("close").style.display = "block";
+    let gallery = document.getElementById("blueimp-gallery");
+    gallery.style.height = "100vh";
+    gallery.style.top = "0";
+    gallery.style.marginTop = "0";
+    gallery.style.zIndex = "999";
+    document.body.style.overflow = "hidden";
+    document.querySelectorAll(".slide").forEach(s => s.onclick = null);
+    window.onscroll = null;
+}
 
+function convertToWideGallery() {
+    document.querySelector(".play-pause").click();
+    document.querySelector(".play-pause").click();
+    let gallery = document.getElementById("blueimp-gallery");
+    document.getElementById("close").style.display = "none";
+    document.body.style.overflow = "overlay";
+    gallery.style.zIndex = "0";
+    gallery.style.height = "calc(var(--gallery-width)/4)"; 
+    document.querySelectorAll(".slide").forEach(s => s.onclick = null)
+    window.onscroll = (event) => doOnScroll(event);
+    setGalleryPosition();
+}

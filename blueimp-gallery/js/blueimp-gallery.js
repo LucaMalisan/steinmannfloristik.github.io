@@ -105,7 +105,7 @@
       // The class for the "next" control:
       nextClass: 'next',
       // The class for the "close" control:
-      closeClass: 'close',
+      closeClass: 'closxee',
       // The class for the "play-pause" toggle control:
       playPauseClass: 'play-pause',
       // The list object property (or data attribute) with the object type:
@@ -137,11 +137,11 @@
       // Navigate the gallery by pressing the ArrowLeft and ArrowRight keys:
       enableKeyboardNavigation: true,
       // Close the gallery on pressing the Escape key:
-      closeOnEscape: true,
+      closeOnEscape: false,
       // Close the gallery when clicking on an empty slide area:
-      closeOnSlideClick: true,
+      closeOnSlideClick: false,
       // Close the gallery by swiping up or down:
-      closeOnSwipeUpOrDown: true,
+      closeOnSwipeUpOrDown: false,
       // Close the gallery when the URL hash changes:
       closeOnHashChange: true,
       // Emulate touch events on mouse-pointer devices such as desktop browsers:

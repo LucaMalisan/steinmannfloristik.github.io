@@ -230,3 +230,17 @@ img {
 span {
     cursor: pointer;
 }
+
+#close {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    color: white;
+    font-size: 46px;
+    filter: opacity(0.5);
+}
+
+#close:hover {
+    filter: opacity(1);
+}
