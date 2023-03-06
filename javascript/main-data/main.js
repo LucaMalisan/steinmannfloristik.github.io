@@ -1,6 +1,7 @@
 let disableProgrammingTools = false;
 let numberOfVisibleImages;
 let finishedFlag = false;
+let supportedImageFormats = ["jpg","jpeg", "png"];
 
 async function waitForXMs(ms){
     return new Promise(resolve => {
@@ -9,7 +10,7 @@ async function waitForXMs(ms){
         }, ms);
       })}
 
-async function initPage(imageName) {
+async function initPage(imageName="") {
     await loadMainHTML();
     await insertImagesInGallery(imageName);
 
@@ -30,18 +31,18 @@ async function initPage(imageName) {
     .getPropertyValue('--slider-image-size')); 
     numberOfVisibleImages = Math.min(4, document.getElementById("links").childElementCount);
     document.getElementById("links").style.width = (numberOfVisibleImages * imageSize) + 'px';
-    debugger;
-    document.querySelectorAll(".slide").forEach(s => s.onclick = () => convertToWholewindowGallery());
 }
 
-async function insertImagesInGallery(imageName, i=1){
-    let route = "resources\\" + imageName + "\\" + imageName + "%.jpg";
+async function insertImagesInGallery(imageName, i=1, format=supportedImageFormats[0]){
+    let route = "resources\\" + imageName + "\\" + imageName + "%." + format;
     return fetch(route.replace('%', i))
         .then((response) => {
             if(response.status == 200){
                 document.getElementById("links").appendChild(getHtmlForGalleryImg("title", route.replace('%', i)));
                 i++;
                 insertImagesInGallery(imageName, i);
+                } else if(supportedImageFormats.indexOf(format) !== supportedImageFormats.length-1) {
+                    insertImagesInGallery(imageName, i, format=supportedImageFormats[supportedImageFormats.indexOf(format)+1]);
                 } else {
                     finishedFlag = true;
                 }})
@@ -97,16 +98,23 @@ function initEventListeners() {
     if(disableProgrammingTools) {
         disableDeveloperTools();
     }
+
+    document.getElementById("links").addEventListener('click', () => {
+        debugger;
+        if(document.getElementById("blueimp-gallery").classList.contains("blueimp-gallery-playing")) {
+            document.querySelector(".play-pause").click();
+        }
+        document.querySelectorAll(".slide").forEach(s => s.onclick = () => convertToWholewindowGallery());
+    });
+
     setGalleryPosition();
 }
 
 function setGalleryPosition() {
-    let pos = document.querySelector("header").getBoundingClientRect().top;
-    let distanceProp = parseInt(getComputedStyle(document.documentElement)
+    let distance = parseInt(getComputedStyle(document.documentElement)
     .getPropertyValue('--distance-headertop-gallery'));   
-    let distance = distanceProp;
-    document.getElementById("blueimp-gallery").style.marginTop = (pos + distance) + "px";
-    document.getElementById("blueimp-gallery").style.position = "sticky";
+    document.getElementById("blueimp-gallery").style.marginTop = (distance) + "px";
+    document.getElementById("blueimp-gallery").style.position = "relative";
 
     for(let i = 0; i < document.querySelectorAll(".slide").length; i++) {
         let galleryWidth = getComputedStyle(document.documentElement)
@@ -116,12 +124,6 @@ function setGalleryPosition() {
 }
 
 function doOnScroll(e){
-    if(document.querySelector("nav") !== null) {
-        let pos = document.querySelector("header").getBoundingClientRect().top;
-        let distance = parseInt(getComputedStyle(document.documentElement)
-        .getPropertyValue('--distance-headertop-gallery'));  
-        document.getElementById("blueimp-gallery").style.top = (pos + distance) + "px";
-    }
    if (document.querySelector("#logo-and-contact").getBoundingClientRect().bottom <= 0) {
        document.querySelector("nav").style.position = "fixed";
        document.querySelector("nav").style.width = "100%";
@@ -140,7 +142,7 @@ function disableDeveloperTools() {
 
     document.addEventListener('mousedown', (e) => {
          if(e.button == '2') {
-            alert("Copyright 2023: Sandra Steinmann");
+            alert("Copyright " + new Date().getFullYear + ": Sandra Steinmann");
             e.preventDefault();
         } 
     });
@@ -198,20 +200,15 @@ function convertToWholewindowGallery() {
     gallery.style.top = "0";
     gallery.style.marginTop = "0";
     gallery.style.zIndex = "999";
+    gallery.style.position = "fixed"; 
     document.body.style.overflow = "hidden";
-    document.querySelectorAll(".slide").forEach(s => s.onclick = null);
-    window.onscroll = null;
 }
 
 function convertToWideGallery() {
-    document.querySelector(".play-pause").click();
-    document.querySelector(".play-pause").click();
-    let gallery = document.getElementById("blueimp-gallery");
     document.getElementById("close").style.display = "none";
     document.body.style.overflow = "overlay";
+    let gallery = document.getElementById("blueimp-gallery");
     gallery.style.zIndex = "0";
     gallery.style.height = "calc(var(--gallery-width)/4)"; 
-    document.querySelectorAll(".slide").forEach(s => s.onclick = null)
-    window.onscroll = (event) => doOnScroll(event);
     setGalleryPosition();
 }
