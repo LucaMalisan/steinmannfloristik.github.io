@@ -35,8 +35,13 @@ async function loadMainHTML() {
 
 async function initPage() {
     let postIds = [];
-    let accessToken = await getEnvVariable("ACCESS_TOKEN")
-     pageId = await getEnvVariable("PAGE_ID");
+    //for local testing
+  //  let accessToken = await getEnvVariable("ACCESS_TOKEN")
+  //   pageId = await getEnvVariable("PAGE_ID");
+
+  //for Github Pages
+     let accessToken = ACCESS_TOKEN
+     pageId = PAGE_ID
      debugger
     await fetch('https://graph.facebook.com/' + pageId + '/posts', {
         headers: {
