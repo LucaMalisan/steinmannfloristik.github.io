@@ -1,4 +1,4 @@
-let pageId = "872459973854848";
+let pageId;
 let numberOfPosts = 0;
 
 async function loadMainHTML() {
@@ -35,8 +35,9 @@ async function loadMainHTML() {
 
 async function initPage() {
     let postIds = [];
-    let accessToken = 'EAAHiYiM8ZAHcBANFNEPWsvKVxO24dZCCxHFJ6ZCR0YyIzGdSmy4Wz9NTC834h5lmwuXbZA7loCNroCFSkwxD9jw584SW3srmilPsNpXVlw2QbQoEglHe7fOxnVlfUgop73zLQbSWiIID2BYIu1ZAUqGbhbcEnin6rMoHbffCH9eN1Le0YwVFzXHWZAyMCClWZCpUQU3ixBcKZBAbQuZBqRUiP'
- 
+    let accessToken = await getEnvVariable("ACCESS_TOKEN")
+     pageId = await getEnvVariable("PAGE_ID");
+     debugger
     await fetch('https://graph.facebook.com/' + pageId + '/posts', {
         headers: {
             'Authorization': 'Bearer ' + accessToken,
@@ -112,4 +113,20 @@ for(let name of classNames) {
     result = result + "." + name;
 }
 return result;
+}
+
+async function getEnvVariable(key) {
+ return fetch("env")
+    .then(response => response.text())
+    .then(response => {
+        debugger
+let arr = response.split("\r\n");
+
+for(let str of arr) {
+    let split = str.split("=");
+    if(split[0] === key) {
+        return split[1];
+    }
+}
+    })
 }
