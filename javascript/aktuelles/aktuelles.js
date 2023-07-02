@@ -1,4 +1,4 @@
-let pageId = env.pageId;
+let pageId = "872459973854848";
 let numberOfPosts = 0;
 
 async function loadMainHTML() {
@@ -35,7 +35,7 @@ async function loadMainHTML() {
 
 async function initPage() {
     let postIds = [];
-    let accessToken = env.accessToken;
+    let accessToken = 'EAAHiYiM8ZAHcBANFNEPWsvKVxO24dZCCxHFJ6ZCR0YyIzGdSmy4Wz9NTC834h5lmwuXbZA7loCNroCFSkwxD9jw584SW3srmilPsNpXVlw2QbQoEglHe7fOxnVlfUgop73zLQbSWiIID2BYIu1ZAUqGbhbcEnin6rMoHbffCH9eN1Le0YwVFzXHWZAyMCClWZCpUQU3ixBcKZBAbQuZBqRUiP'
  
     await fetch('https://graph.facebook.com/' + pageId + '/posts', {
         headers: {
