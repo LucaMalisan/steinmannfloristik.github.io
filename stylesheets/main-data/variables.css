@@ -7,6 +7,7 @@
     --gallery-height: calc(var(--gallery-width)/4);
     --gallery-position-left: calc(50% - (var(--gallery-width)/2));
     --distance-headertop-gallery: 500; 
+    --distance-timeline-headertop: 20vw;
     --distance-headertop-slider: 700px;
     --slider-image-size: 179;
 }

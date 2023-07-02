@@ -1,0 +1,26 @@
+@import "main-data/main.css";
+
+iframe {
+    border-radius: 0;
+    margin-top: var(--distance-timeline-headertop);
+}
+
+span {
+    left: calc(50% - 250px);
+}
+
+#hidden-facebook-posts {
+    display: none;
+}
+
+#facebook-post-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 300px;
+}
+
+iframe {
+    margin: 10px;
+    background-color: white;
+}

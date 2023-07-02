@@ -4,9 +4,9 @@ async function loadMainHTML() {
     .then(function(htmlCode) {
         let header = htmlCode.split("content")[0];
         let footer = htmlCode.split("content")[1];
-        document.getElementById("inserted-by-fetch").innerHTML = header;
-        document.getElementById("footer-inserted-by-fetch").innerHTML = footer;
-
+     //   document.getElementById("inserted-by-fetch").innerHTML = header;
+     //   document.getElementById("footer-inserted-by-fetch").innerHTML = footer;
+//
         const script = document.createElement('script');
         script.src ='https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0';
         script.async = true;
